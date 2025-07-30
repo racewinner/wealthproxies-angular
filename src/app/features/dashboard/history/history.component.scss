@@ -1,0 +1,258 @@
+.history-container {
+  padding: 0;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #666;
+      border-color: #ddd;
+
+      mat-icon {
+        font-size: 1.2rem;
+      }
+    }
+
+    .search-field {
+      width: 300px;
+
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+      }
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+
+  p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+.table-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+
+  .orders-table {
+    width: 100%;
+    min-width: 800px;
+
+    .product-info {
+      .product-name {
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 0.25rem;
+      }
+
+      .product-variant {
+        color: #666;
+        font-size: 0.9rem;
+      }
+    }
+
+    .order-id {
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .amount {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .status-chip {
+      color: white;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    th {
+      font-weight: 600;
+      color: #333;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem;
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    tr {
+      background-color: white;
+    }
+
+    .mat-mdc-row:last-child .mat-mdc-cell {
+      border-bottom: none;
+    }
+  }
+
+  .no-results-overlay {
+    position: absolute;
+    top: 60px; // Height of header row
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    z-index: 1;
+
+    .no-results-content {
+      text-align: center;
+      color: #666;
+      font-size: 1rem;
+      padding: 3rem 1rem;
+    }
+  }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  //padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+  //background-color: #f8f9fa;
+  min-height: 60px;
+
+  mat-paginator {
+    background: transparent;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .page-header {
+    .page-icon {
+      font-size: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    .search-container {
+      min-width: auto;
+
+      .search-field {
+        max-width: none;
+      }
+    }
+
+    .action-buttons {
+      justify-content: center;
+    }
+  }
+
+  .orders-table {
+    min-width: 600px;
+
+    .product-info {
+      .product-name {
+        font-size: 0.9rem;
+      }
+
+      .product-variant {
+        font-size: 0.8rem;
+      }
+    }
+
+    .order-id {
+      font-size: 0.8rem;
+    }
+
+    .amount {
+      font-size: 0.9rem;
+    }
+
+    .status-chip {
+      font-size: 0.7rem;
+    }
+
+    th, td {
+      padding: 0.5rem 0.25rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-table {
+    min-width: 500px;
+    font-size: 0.8rem;
+
+    th, td {
+      padding: 0.5rem 0.125rem;
+    }
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+/* custom css*/
+.flex-box {
+  display: flex;
+}
+.justify-spave-between {
+  justify-content: space-between;
+}
+.history-action-btn {
+  background-color: var(--card-sub-act-btn-pad2);
+  color: var(--main-title);
+  border: 1px solid var(--card-sub-act-btn-border);
+  border-radius: 8px;
+  height: 36px;
+}

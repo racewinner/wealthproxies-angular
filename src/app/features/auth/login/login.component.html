@@ -1,0 +1,98 @@
+<main class="login-container">
+  <img
+    src="/logo.png"
+    alt="Wealth Proxies Logo"
+    class="logo"
+  />
+
+  <div class="content-wrapper">
+    <div class="header">
+      <h1>Login</h1>
+      <p class="subtitle">
+        Login using your personal details here
+      </p>
+    </div>
+
+    <div class="form-container">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="form-content"
+      >
+        <div class="form-field">
+          <label for="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="name@example.com"
+            formControlName="email"
+            [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          />
+          @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <p class="error-message">{{ getEmailErrorMessage() }}</p>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          />
+          @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <p class="error-message">{{ getPasswordErrorMessage() }}</p>
+          }
+        </div>
+
+        @if (errorMessage()) {
+          <div class="form-field">
+            <p class="error-message">{{ errorMessage() }}</p>
+          </div>
+        }
+
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading()"
+          class="submit-button"
+        >
+          @if (isLoading()) {
+            <mat-spinner diameter="20"></mat-spinner>
+          }
+          Log In
+        </button>
+      </form>
+
+      <div class="form-footer">
+        <button class="forgot-password">
+          Forgot Password
+        </button>
+
+        <div class="signup-section">
+          <span class="signup-text">No account?</span>
+          <button class="signup-link" routerLink="/register">
+            Sign Up
+          </button>
+        </div>
+      </div>
+
+      <div class="separator-section">
+        <div class="separator"></div>
+        <span class="separator-text">Or Discord</span>
+        <div class="separator"></div>
+      </div>
+
+      <div class="oauth-buttons">
+
+        <button
+          class="discord-button"
+          (click)="loginWithDiscord()"
+        >
+          <mat-icon>discord</mat-icon>
+          Discord
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

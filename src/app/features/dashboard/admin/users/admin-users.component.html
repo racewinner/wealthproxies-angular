@@ -1,0 +1,161 @@
+<div class="admin-users-container">
+  <div class="page-header">
+    <div class="header-title">
+      <mat-icon class="page-icon">people</mat-icon>
+      <h1>User Management</h1>
+    </div>
+    <div class="header-actions">
+      <button mat-stroked-button (click)="exportUsers()">
+        <mat-icon>download</mat-icon>
+        Export Users
+      </button>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading users...</p>
+    </div>
+  } @else {
+    <mat-card class="users-card">
+      <mat-card-header>
+        <mat-card-title>All Users ({{ filteredUsers().length }})</mat-card-title>
+        <div class="search-container">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search Users</mat-label>
+            <input matInput 
+                   [(ngModel)]="searchQuery" 
+                   (ngModelChange)="onSearchChange()"
+                   placeholder="Search by name, email, or username">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        @if (filteredUsers().length === 0) {
+          <div class="no-users">
+            <mat-icon class="no-users-icon">people</mat-icon>
+            <h3>No Users Found</h3>
+            @if (searchQuery()) {
+              <p>No users match your search criteria. Try adjusting your search terms.</p>
+              <button mat-button (click)="searchQuery.set(''); onSearchChange()">
+                Clear Search
+              </button>
+            } @else {
+              <p>No users are currently registered in the system.</p>
+            }
+          </div>
+        } @else {
+          <div class="table-container">
+            <table mat-table [dataSource]="filteredUsers()" class="users-table" matSort>
+              <!-- Avatar Column -->
+              <ng-container matColumnDef="avatar">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let user">
+                  <div class="user-avatar">
+                    @if (user.image) {
+                      <img [src]="user.image" [alt]="user.name">
+                    } @else {
+                      <mat-icon>account_circle</mat-icon>
+                    }
+                  </div>
+                </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let user">
+                  <div class="user-info">
+                    <div class="user-name">{{ user.name }}</div>
+                    <div class="user-username">{{ '@' + user.username }}</div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <!-- Email Column -->
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+              </ng-container>
+
+              <!-- Role Column -->
+              <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef>Role</th>
+                <td mat-cell *matCellDef="let user">
+                  <mat-chip 
+                    class="role-chip" 
+                    [style.background-color]="getRoleColor(user.role)">
+                    {{ user.role | titlecase }}
+                  </mat-chip>
+                </td>
+              </ng-container>
+
+              <!-- Status Column -->
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let user">
+                  <mat-chip 
+                    class="status-chip" 
+                    [style.background-color]="getStatusColor(user.emailVerified)">
+                    {{ getStatusText(user.emailVerified) }}
+                  </mat-chip>
+                </td>
+              </ng-container>
+
+              <!-- Total Spent Column -->
+              <ng-container matColumnDef="totalSpent">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Spent</th>
+                <td mat-cell *matCellDef="let user">
+                  <span class="amount">{{ formatCurrency(user.totalSpent) }}</span>
+                </td>
+              </ng-container>
+
+              <!-- Created At Column -->
+              <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Joined</th>
+                <td mat-cell *matCellDef="let user">{{ formatDate(user.createdAt) }}</td>
+              </ng-container>
+
+              <!-- Actions Column -->
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let user">
+                  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #userMenu="matMenu">
+                    <button mat-menu-item [routerLink]="['/dashboard/admin/users', user.id]">
+                      <mat-icon>visibility</mat-icon>
+                      <span>View Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editUser(user.id)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit User</span>
+                    </button>
+                    <button mat-menu-item (click)="toggleUserStatus(user.id)">
+                      <mat-icon>{{ user.emailVerified ? 'block' : 'check_circle' }}</mat-icon>
+                      <span>{{ user.emailVerified ? 'Suspend' : 'Activate' }}</span>
+                    </button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item (click)="deleteUser(user.id)" class="delete-action">
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete User</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+                  class="user-row" 
+                  [routerLink]="['/dashboard/admin/users', row.id]"></tr>
+            </table>
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

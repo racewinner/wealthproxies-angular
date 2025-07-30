@@ -1,0 +1,54 @@
+<main class="verify-email-container">
+  <img
+    src="/logo.png"
+    alt="Wealth Proxies Logo"
+    class="logo"
+  />
+
+  <div class="content-wrapper">
+    <!-- Loading State -->
+    @if (isLoading()) {
+      <div class="header">
+        <h1>Email Verification</h1>
+        <p class="subtitle">Verifying your email address...</p>
+      </div>
+      <div class="loading-section">
+        <mat-spinner diameter="20"></mat-spinner>
+      </div>
+    }
+
+    <!-- Success State -->
+    @if (!isLoading() && isSuccess()) {
+      <div class="header">
+        <h1>Email Verified Successfully!</h1>
+        <p class="subtitle">
+          Your email address has been verified. You can now log in to your account.
+        </p>
+      </div>
+      <div class="form-container">
+        <button
+          class="submit-button"
+          (click)="redirectToLogin()"
+        >
+          Go to Login
+        </button>
+      </div>
+    }
+
+    <!-- Error State -->
+    @if (!isLoading() && !isSuccess() && errorMessage()) {
+      <div class="header">
+        <h1>Verification Failed</h1>
+        <p class="subtitle">{{ errorMessage() }}</p>
+      </div>
+      <div class="form-container">
+        <button
+          class="submit-button"
+          (click)="redirectToLogin()"
+        >
+          Go to Login
+        </button>
+      </div>
+    }
+  </div>
+</main>

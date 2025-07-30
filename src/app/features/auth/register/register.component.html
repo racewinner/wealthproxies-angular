@@ -1,0 +1,200 @@
+<main class="register-container">
+  <img
+    src="/logo.png"
+    alt="Wealth Proxies Logo"
+    class="logo"
+  />
+
+  <div class="content-wrapper">
+    <!-- Registration Success Message -->
+    @if (registrationSuccess()) {
+      <div class="success-container">
+        <div class="success-icon">
+          <mat-icon class="check-icon">check_circle</mat-icon>
+        </div>
+        <div class="header">
+          <h1>Thank You for Registering!</h1>
+          <p class="subtitle">
+            We've sent a verification email to <strong>{{ userEmail() }}</strong>
+          </p>
+          <p class="verification-text">
+            Please check your email and click the verification link to activate your account.
+            Don't forget to check your spam folder if you don't see the email.
+          </p>
+        </div>
+        <div class="success-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            class="login-button"
+            (click)="goToLogin()"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    } @else {
+      <!-- Registration Form -->
+      <div class="header">
+        <h1>Register</h1>
+        <p class="subtitle">
+          Register using your personal details here
+        </p>
+      </div>
+
+      <div class="form-container">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="form-content"
+      >
+        <div class="form-field">
+          <label for="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="John Doe"
+            formControlName="name"
+            [class.error]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+          />
+          @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+            <p class="error-message">
+              @if (registerForm.get('name')?.errors?.['required']) {
+                Full name is required
+              }
+              @if (registerForm.get('name')?.errors?.['minlength']) {
+                Name must be at least 3 characters
+              }
+            </p>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="name@example.com"
+            formControlName="email"
+            [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          />
+          @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <p class="error-message">
+              @if (registerForm.get('email')?.errors?.['required']) {
+                Email is required
+              }
+              @if (registerForm.get('email')?.errors?.['email']) {
+                Please enter a valid email address
+              }
+            </p>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            placeholder="johndoe"
+            formControlName="username"
+            [class.error]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+          />
+          @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+            <p class="error-message">
+              @if (registerForm.get('username')?.errors?.['required']) {
+                Username is required
+              }
+              @if (registerForm.get('username')?.errors?.['minlength']) {
+                Username must be at least 3 characters
+              }
+            </p>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          />
+          @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <p class="error-message">
+              @if (registerForm.get('password')?.errors?.['required']) {
+                Password is required
+              }
+              @if (registerForm.get('password')?.errors?.['minlength']) {
+                Password must be at least 8 characters
+              }
+            </p>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            [class.error]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+          />
+          @if (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {
+            <p class="error-message">
+              @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+                Please confirm your password
+              }
+              @if (registerForm.get('confirmPassword')?.errors?.['passwordMismatch']) {
+                Passwords do not match
+              }
+            </p>
+          }
+        </div>
+
+        @if (errorMessage()) {
+          <div class="form-field">
+            <p class="error-message">{{ errorMessage() }}</p>
+          </div>
+        }
+
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid || isLoading()"
+          class="submit-button"
+        >
+          @if (isLoading()) {
+            <mat-spinner diameter="20"></mat-spinner>
+          }
+          Register
+        </button>
+      </form>
+
+      <div class="form-footer">
+        <div class="signin-section">
+          <span class="signin-text">Already have an account?</span>
+          <button class="signin-link" routerLink="/login">
+            Sign In
+          </button>
+        </div>
+      </div>
+
+      <div class="separator-section">
+        <div class="separator"></div>
+        <span class="separator-text">Or Discord</span>
+        <div class="separator"></div>
+      </div>
+
+      <div class="oauth-buttons">
+     
+        <button
+          class="discord-button"
+          (click)="registerWithDiscord()"
+        >
+          <mat-icon>discord</mat-icon>
+          Discord
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+</main>

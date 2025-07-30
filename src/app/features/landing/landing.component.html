@@ -1,0 +1,551 @@
+<div class="landing-page">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="flex-box">
+        <img src="/Main_Logo.svg" alt="Wealth Proxies Logo" class="header-logo">
+        <div class="logo-title">Wealth Proxies</div>
+      </div>
+      
+      <div class="header-actions">
+          <nav class="landing-nav">
+            <a href="#choose-solution" class="text-gray-600 hover:text-gray-900 transition-colors">Solutions</a>
+            <a href="#why-wealth-proxies" class="text-gray-600 hover:text-gray-900 transition-colors">About Us</a>
+            <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 transition-colors">How It Works</a>
+            <a href="#pricing" class="text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+            <a href="#partners" class="text-gray-600 hover:text-gray-900 transition-colors">Partners</a>
+            <a href="#faq" class="text-gray-600 hover:text-gray-900 transition-colors">FAQ</a>
+            <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">Support</a>
+          </nav>
+        @if (isLoggedIn) {
+          <button mat-raised-button color="primary" (click)="onDashboardClick()" class="dashboard-btn">
+            Dashboard
+          </button>
+        } @else {
+          <button mat-stroked-button class="login-btn" (click)="onLoginClick()">
+            Log In
+          </button>
+          <button mat-raised-button color="primary" routerLink="/register" class="signup-btn">
+            Sign Up Now
+          </button>
+        }
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="hero-custom-section">
+      <div class="landing-txt">
+        <div class="main-topic">Elite Proxy</div>
+        <div class="main-topic">Performance.</div>
+        <div class="sub-topic">Instant Access.</div>
+        <div class="description">Residential proxies with unlimited sessions, and premium ISP proxies built for stability and speed.</div>
+        <div class="flex-box-left" style="margin-top: 34px;">
+          <button mat-stroked-button class="mat-custom-hero-btn start-btn mr-10">
+            <span class="txt-black pr-10">Get Started Now</span>
+            <mat-icon class="txt-black mr-0">arrow_forward</mat-icon>
+          </button>
+          <button mat-stroked-button class="mat-custom-hero-btn discord-btn ml-10">
+            <span class="txt-black pr-10">Log In with Discord</span>
+            <mat-icon class="txt-black mr-0">discord</mat-icon>
+          </button>
+        </div>
+        <div class="flex-box-left" style="margin-top: 40px; gap: 33px;">
+          <div>
+            <div class="withd-title">135M+</div>
+            <div class="withd-desc">IP Addresses</div>
+          </div>
+          <div>
+            <div class="withd-title">180+</div>
+            <div class="withd-desc">Countries</div>
+          </div>
+          <div>
+            <div class="withd-title">99.9%</div>
+            <div class="withd-desc">Uptime</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="shadow-2xl">
+          <img src="/landing.png" class="landing-img"/>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="backgnd-gray">
+    <main class="main-content">
+    
+      <div id="choose-solution" class="text-center">
+        <h1 class="section-title">Choose Your Solution</h1>
+        <div style="max-width: 48rem;">
+          <span class="section-desc">Lorem ipsum dolor set amet consectetur adipisicing</span>
+        </div>
+      </div>
+  
+      <div class="grid-box grid-col-3 full-width gap-1d5r">
+        <div class="border-box border-hover-box">
+          <div class="text-center">
+            <mat-icon class="box-ico">home</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-center mt-1d5r mb-0d5r">Residential Proxies</div>
+          <div class="box-content-txt-sz16 text-center line-h-1d5 mt-0d5r mb-1d5r">Unlock millions of real residential IPs with unlimited sessions. Built for automation, scraping, and scale.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-center">
+            <mat-icon class="box-ico">language</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-center mt-1d5r mb-0d5r">ISP Proxies</div>
+          <div class="box-content-txt-sz16 text-center line-h-1d5 mt-0d5r mb-1d5r">Blazing fast, stable, and trusted ISP proxies combining the speed of datacenters with the trust of residential networks.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-center">
+            <mat-icon class="box-ico">dns</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-center mt-1d5r mb-0d5r">Servers</div>
+          <div class="box-content-txt-sz16 text-center line-h-1d5 mt-0d5r mb-1d5r">High performance VPS servers built for automation and botting. Hosted in Ashburn, VA and optimized for speed and uptime.</div>
+        </div>
+      </div>
+
+      <div id="why-wealth-proxies" class="text-center">
+        <h1 class="section-title">Why Wealth Proxies?</h1>
+        <div style="max-width: 48rem;">
+          <span class="section-desc">Built for consumers and businesses that need reliable, high-performance proxy solutions</span>
+        </div>
+      </div>
+
+      <div class="grid-box grid-col-3 full-width gap-1d5r">
+        <div class="border-box border-hover-box">
+          <div class="text-left">
+            <mat-icon class="box-ico-small">all_inclusive</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-left mt-1d5r mb-0d5r">Unlimited Sessions</div>
+          <div class="box-content-txt-sz16 text-left line-h-1d5 mt-0d5r mb-1d5r">No session limits. Scale your operations without restrictions or additional fees.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-left">
+            <mat-icon class="box-ico-small">electric_bolt</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-left mt-1d5r mb-0d5r">High-Speed Performance</div>
+          <div class="box-content-txt-sz16 text-left line-h-1d5 mt-0d5r mb-1d5r">Lightning-fast residential and ISP proxies optimized for speed and reliability.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-left">
+            <mat-icon class="box-ico-small">shield</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-left mt-1d5r mb-0d5r">99.9% Uptime</div>
+          <div class="box-content-txt-sz16 text-left line-h-1d5 mt-0d5r mb-1d5r">Enterprise-grade infrastructure ensures your operations never stop running.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-left">
+            <mat-icon class="box-ico-small">headphones</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-left mt-1d5r mb-0d5r">24/7 Support</div>
+          <div class="box-content-txt-sz16 text-left mt-0d5r mb-1d5r">Expert support team available around the clock to help you succeed.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-left">
+            <mat-icon class="box-ico-small">language</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-left mt-1d5r mb-0d5r">Global Coverage</div>
+          <div class="box-content-txt-sz16 text-left mt-0d5r mb-1d5r">Access IPs from 180+ countries with city-level targeting capabilities.</div>
+        </div>
+        <div class="border-box border-hover-box">
+          <div class="text-left">
+            <mat-icon class="box-ico-small">workspace_premium</mat-icon>
+          </div>
+          <div class="box-title-sz20 text-left mt-1d5r mb-0d5r">Enterprise Grade</div>
+          <div class="box-content-txt-sz16 text-left mt-0d5r mb-1d5r">Built for businesses that demand the highest quality and performance standards.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <main class="main-content">
+    <div id="how-it-works" class="text-center">
+      <h1 class="section-title">How It Works</h1>
+      <div style="max-width: 48rem;">
+        <span class="section-desc">Get started with enterprise-grade products in three simple steps</span>
+      </div>
+    </div>
+
+    <div class="grid-box grid-col-3 full-width gap-1d5r">
+      <div class="border-box border-hover-box">
+        <div class="text-center">
+          <mat-icon class="box-ico-middle">home</mat-icon>
+        </div>
+        <div class="box-title-sz20 text-center mt-1d5r mb-0d5r">Choose Plan</div>
+        <div class="box-content-txt-sz16 text-center line-h-1d5 mt-0d5r mb-1d5r">Pick the plan that fits your needs: residential or ISP, starter to enterprise. Flexible options for every use case.</div>
+      </div>
+      <div class="border-box border-hover-box">
+        <div class="text-center">
+          <mat-icon class="box-ico-middle">language</mat-icon>
+        </div>
+        <div class="box-title-sz20 text-center mt-1d5r mb-0d5r">Get Instant Access</div>
+        <div class="box-content-txt-sz16 text-center line-h-1d5 mt-0d5r mb-1d5r">Purchase or subscribe to start using your proxies immediately. No setup delays, just fast and reliable access.</div>
+      </div>
+      <div class="border-box border-hover-box">
+        <div class="text-center">
+          <mat-icon class="box-ico-middle">dns</mat-icon>
+        </div>
+        <div class="box-title-sz20 text-center mt-1d5r mb-0d5r">Monitor Your Usage</div>
+        <div class="box-content-txt-sz16 text-center line-h-1d5 mt-0d5r mb-1d5r">Track your bandwidth, active plans, and proxy activity in real-time through our intuitive dashboard.</div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <h1 id="pricing" class="section-title">Product Pricing</h1>
+      <div style="max-width: 48rem;">
+        <span class="section-desc">From residential to ISP and dedicated servers. Scale with confidence using our premium infrastructure.</span>
+      </div>
+    </div>
+
+    <div class="title-with-ico">
+      <mat-icon class="custom-ico">language</mat-icon>
+      <div class="custom-txt">Residential Proxies</div>
+    </div>
+
+    <div class="grid-box grid-col-2 full-width gap-1d5r">
+      <div class="border-box border-hover-box regidental-box">
+        <div class="box-title-sz20 text-center mb-0d5r">Wealth Residential</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$5</div>
+          <div class="box-price-unit-sz1d125r">/GB</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">No bandwidth expiration</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Residential Network</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Country/US State Selection</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>40+ Million IPs</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Rotating or Sticky</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unbanned on all sites</div>
+        <button mat-stroked-button class="box-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+      <div class="border-box border-hover-box regidental-box">
+        <div class="flex-box">
+          <div class="box-badge">New</div>
+        </div>
+        <div class="box-title-sz20 text-center mb-0d5r">Wealth Residential 2.0</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$7</div>
+          <div class="box-price-unit-sz1d125r">/GB</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">12-month bandwidth expiration</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Residential/ISP Network</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Country Selection</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>85+ Million IPs</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Rotating or Sticky</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unbanned on all sites</div>
+        <button mat-stroked-button class="box-btn blue-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="title-with-ico">
+      <mat-icon class="custom-ico">electric_bolt</mat-icon>
+      <div class="custom-txt">ISP Proxies</div>
+    </div>
+
+    <div class="grid-box grid-col-4 full-width gap-1d5r">
+      <div class="border-box border-hover-box proxy-box">
+        <div class="box-title-sz20 text-center mb-0d5r">USA ISP</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$1.50</div>
+          <div class="box-price-unit-sz1d125r">/IP</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">Standard ISP</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 v-top"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Hosted in Ashburn, VA</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 v-top"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Tier 3 ASN</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 v-top"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwidth</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 v-top"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Rotating or Sticky</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 v-top"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Low/medium security automation and scraping needs</div>
+        <button mat-stroked-button class="box-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+      <div class="border-box border-hover-box proxy-box">
+        <div class="flex-box">
+          <div class="box-badge">premium</div>
+        </div>
+        <div class="box-title-sz20 text-center mb-0d5r">Premium ISP</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$2.50</div>
+          <div class="box-price-unit-sz1d125r">/IP</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">Premium Network</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Hosted in Ashburn, VA (10GB line)</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Tier 1 ASNs</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwidth</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Retail, Shopify, Events, and all scraping needs</div>
+        <button mat-stroked-button class="box-btn blue-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+      <div class="border-box border-hover-box proxy-box">
+        <div class="box-title-sz20 text-center mb-0d5r">Virgin Regional ISP</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$2.25</div>
+          <div class="box-price-unit-sz1d125r">/IP</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">Placeholder</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>VA, NY, CHI, LA, or SEA</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>RCN & Windstream ASNs</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwidth</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Retail, Shopify, and all scraping needs</div>
+        <button mat-stroked-button class="box-btn full-width mt-1d5r ">
+          <span>Subscribe</span>
+        </button>
+      </div>
+      <div class="border-box border-hover-box proxy-box">
+        <div class="box-title-sz20 text-center mb-0d5r">Japan ISP</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$2.50</div>
+          <div class="box-price-unit-sz1d125r">/IP</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">Japan Location</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Hosted in Japan</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Various ASNs</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwidth</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Retail, Supreme, Shopify, PKC, and more.</div>
+        <button mat-stroked-button class="box-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="title-with-ico">
+      <mat-icon class="custom-ico">dns</mat-icon>
+      <div class="custom-txt">Dedicated Servers</div>
+    </div>
+
+    <div class="grid-box grid-col-3 full-width gap-1d5r">
+      <div class="border-box border-hover-box proxy-box">
+        <div class="box-title-sz20 text-center mb-0d5r">16x16 Server</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$50</div>
+          <div class="box-price-unit-sz1d125r">/mo</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">Average performance</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>16 vCPU, 16GB RAM</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Hosted in Ashburn, VA</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwith</div>
+        <button mat-stroked-button class="box-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+      <div class="border-box border-hover-box proxy-box">
+        <div class="flex-box">
+          <div class="box-badge">New</div>
+        </div>
+        <div class="box-title-sz20 text-center mb-0d5r">32x32 Server</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$90</div>
+          <div class="box-price-unit-sz1d125r">/mo</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">Medium performance</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>32 vCPU, 32GB RAM</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Hosted in Ashburn, VA</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwith</div>
+        <button mat-stroked-button class="box-btn blue-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+      <div class="border-box border-hover-box proxy-box">
+        <div class="box-title-sz20 text-center mb-0d5r">64x64 Server</div>
+        <div class="flex-box v-baseline">
+          <div class="box-price-txt-sz30 text-center">$160</div>
+          <div class="box-price-unit-sz1d125r">/mo</div>
+        </div>
+        <div class="box-extra-desc-sz16 text-center mt-0d5r mb-1d5r">12-month bandwidth expiration</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>64 vCPU, 64GB RAM</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Hosted in Ashburn, VA</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2"><mat-icon class="box-content-txt-chk-ico">check</mat-icon>Unlimited Bandwith</div>
+        <button mat-stroked-button class="box-btn full-width mt-1d5r ">
+          <span>Get Started</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="backgnd-gray">
+    <main id="partners" class="main-content">
+      <div class="text-center">
+        <h1 class="section-title">Partnered with Industry Leaders</h1>
+        <div style="max-width: 48rem;">
+          <span class="section-desc">Our proxies are fully compatible and trusted by industry-leading automation tools for speed and reliability.</span>
+        </div>
+      </div>
+
+      <div class="grid-box grid-col-3 full-width gap-1d5r">
+        <div class="border-box toggle-color">
+          <div class="text-center mb-1d5r">
+            <img class="box-img" src="https://pbs.twimg.com/profile_images/1300176473442127875/GYSIS70T_400x400.jpg" />
+          </div>
+          <div class="box-title-sz20 text-center mb-0d5r">Valor AIO</div>
+          <div class="box-extra-desc-sz14 text-center mt-0d5r mb-1d5r">All-In-One Automation Software</div>
+        </div>
+        <div class="border-box toggle-color">
+          <div class="text-center mb-1d5r">
+            <img class="box-img" src="https://pbs.twimg.com/profile_images/1430986474602876928/tSQDzmzi_400x400.jpg" />
+          </div>
+          <div class="box-title-sz20 text-center mb-0d5r">Refract</div>
+          <div class="box-extra-desc-sz14 text-center mt-0d5r mb-1d5r">Retail Automation Software</div>
+        </div>
+        <div class="border-box toggle-color">
+          <div class="text-center mb-1d5r">
+            <img class="box-img" src="https://pbs.twimg.com/profile_images/1511097449699545088/xCKR64Mo_400x400.jpg" />
+          </div>
+          <div class="box-title-sz20 text-center mb-0d5r">Hayha</div>
+          <div class="box-extra-desc-sz14 text-center mt-0d5r mb-1d5r">All-In-One Automation Software</div>
+        </div>
+        <div class="border-box toggle-color">
+          <div class="text-center mb-1d5r">
+            <img class="box-img" src="https://pbs.twimg.com/profile_images/1448219267275579398/UVJraHv3_400x400.jpg" />
+          </div>
+          <div class="box-title-sz20 text-center mb-0d5r">Shikari</div>
+          <div class="box-extra-desc-sz14 text-center mt-0d5r mb-1d5r">Retail Automation Software</div>
+        </div>
+        <div class="border-box toggle-color">
+          <div class="text-center mb-1d5r">
+            <img class="box-img" src="https://shop.quickcop.io/assets/img/quickcop_logo_main.png" />
+          </div>
+          <div class="box-title-sz20 text-center mb-0d5r">Quickcop</div>
+          <div class="box-extra-desc-sz14 text-center mt-0d5r mb-1d5r">iOS Automation Software</div>
+        </div>
+        <div class="border-box toggle-color">
+          <div class="text-center mb-1d5r">
+            <img class="box-img" src="https://storage.googleapis.com/web.buckets.aycd.io/2021/brand/rotating/logo_lg.png" />
+          </div>
+          <div class="box-title-sz20 text-center mb-0d5r">AYCD</div>
+          <div class="box-extra-desc-sz14 text-center mt-0d5r mb-1d5r">Versitile Automation Software</div>
+        </div>
+      </div>
+    </main>
+  </div>
+    
+  <main class="main-content">
+    <div id="FAQ" class="text-center">
+      <h1 class="section-title">Frequently Asked Questions</h1>
+      <div style="max-width: 48rem;">
+        <span class="section-desc">Everything you need to know about Wealth Proxies.</span>
+      </div>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> What is the delivery time after purchase? </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Residential proxies are delivered instantly and appear on your dashboard within seconds. ISP proxies are usually fulfilled instantly as well, but in rare cases may require manual provisioning. If that happens, delivery will be completed within 24 hours at most.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> What payment methods do you accept? </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>We use Stripe as our payment processor, which supports credit and debit cards, Apple Pay, Link, and other major payment methods.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Do you offer free trials? </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>We don’t currently offer free trials for standard B2C purchases. However, you can start with a small quantity to test performance. If you're interested in bulk or B2B plans, please contact support to discuss trial options.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> What is the customer support availability & response time? </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Our team actively monitors support tickets via Discord and live chat. While we don’t guarantee 24/7 coverage, we aim to respond to all inquiries promptly and efficiently.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Cam I upgrade or downgrade my plan? </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Absolutely. You can change your plan at any time through your dashboard. Upgrades take effect immediately, and downgrades take effect at your next billing cycle.</p>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+    <div class="products-section">
+      @if (loading()) {
+        <div class="loading-container">
+          <mat-spinner></mat-spinner>
+          <p>Loading products...</p>
+        </div>
+      } @else {
+        <!-- Proxy List Products Grid -->
+        <div class="products-grid">
+          @for (product of getProxyListProducts(); track product.id) {
+            <app-product-card
+              [productId]="product.id"
+              [title]="product.name"
+              [description]="product.description"
+              [whatsIncluded]="product.whatsIncluded"
+              [variants]="product.variants"
+              [enablePurchase]="false">
+            </app-product-card>
+          }
+        </div>
+
+        <!-- Residential Products -->
+        @for (product of getResidentialProducts(); track product.id) {
+          <app-residential-proxy-card
+            [productId]="product.id"
+            [title]="product.name"
+            [description]="product.description"
+            [whatsIncluded]="product.whatsIncluded"
+            [variants]="product.variants"
+            [enablePurchase]="false">
+          </app-residential-proxy-card>
+        }
+      }
+    </div>
+  </main>
+
+  <div class="custom-footer-container">
+    <div class="custom-footer">
+      <div class="footer-info">
+          <img src="/Main_Logo.svg" alt="Wealth Proxies Logo" class="footer-logo" >
+          <p class="footer-description">
+            Elite proxy performance with instant access. Built for businesses that demand the highest quality and reliability.
+          </p>
+        </div>
+        <div class="footer-info">
+          <div class="box-title-sz20 mb-0d5r">Solutions</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">All Solutions</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Residential Proxies</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">ISP Proxies</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Dedicated Servers</div>
+        </div>
+        <div class="footer-info">
+          <div class="box-title-sz20 mb-0d5r">Company</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">About Us</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">How It Works</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Pricing</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Partners</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">FAQ</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Support</div>
+        </div>
+        <div class="footer-info">
+          <div class="box-title-sz20 mb-0d5r">Legal</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Terms of Service</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Privacy Policy</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">ISP Proxies</div>
+          <div class="flex-box-left box-content-txt-sz16 line-h-2">Cookies</div>
+        </div>
+    </div>
+
+    <div class="custom-footer-2 flex-box flex-justy-spacebetween footer-divider">
+      <div class="footer-info">
+        <div class="flex-box-left box-content-txt-sz16 line-h-2">All rights reserved Wealth Proxies, 2025</div>
+      </div>
+      <div class="footer-info flex-box">
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 mr-10">Privacy Policy</div>
+        <div class="flex-box-left box-content-txt-sz16 line-h-2 ml-10">Terms of Service</div>
+      </div>
+    </div>
+  </div>
+</div>

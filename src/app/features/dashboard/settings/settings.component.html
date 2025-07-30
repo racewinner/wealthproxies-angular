@@ -1,0 +1,200 @@
+<div class="settings-container">
+  <div class="page-header">
+    <h1>Settings</h1>
+  </div>
+
+  <div class="settings-content">
+    <!-- Settings Grid -->
+    <div class="settings-grid">
+      <!-- Discord Connection Card -->
+      <mat-card class="connection-card">
+        <mat-card-header class="mat-custom-card-header mat-custom-card-padding">
+          <mat-card-title class="mat-custom-card-title">
+            Connect Discord Account
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          @if (currentUser()?.discordId) {
+          <div class="connected-account">
+            <div class="account-info">
+              <mat-icon class="connected-icon">check_circle</mat-icon>
+              <div class="account-details">
+                <div class="account-name">
+                  {{ currentUser()?.discordUsername }}
+                </div>
+                <div class="account-status">Connected</div>
+              </div>
+            </div>
+            <button
+              mat-stroked-button
+              color="warn"
+              (click)="disconnectDiscord()"
+            >
+              Disconnect
+            </button>
+          </div>
+          } @else {
+          <div class="disconnected-account">
+            <p>Connect your discord account here</p>
+
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="connectDiscord()"
+              class="setting-account-add-btn"
+            >
+              <mat-icon class="mat-icon-font-family">add2</mat-icon>
+              Connect New Account
+            </button>
+
+
+
+            
+          </div>
+          }
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Contact Support Card -->
+      <mat-card class="contact-card">
+        <mat-card-header class="mat-custom-card-header mat-custom-card-padding">
+          <mat-card-title class="mat-custom-card-title">
+            <!-- <mat-icon class="support-icon">help</mat-icon> -->
+            Looking to connect with us?
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="contact-options">
+            <p>We’re here to help, contact us</p>
+            <button
+              mat-stroked-button
+              class="contact-option"
+              (click)="openSupportCenter()"
+            >
+              <mat-icon>help_center</mat-icon>
+              <div class="option-text">
+                <div class="option-title">Help Center</div>
+              </div>
+            </button>
+
+            <button
+              mat-stroked-button
+              class="contact-option"
+              (click)="openDiscordServer()"
+            >
+              <mat-icon>discord</mat-icon>
+              <div class="option-text">
+                <div class="option-title">Discord Server</div>
+              </div>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="page-header person-info-title">
+    <!-- <mat-icon class="page-icon">settings</mat-icon> -->
+    <h1>Personal Information</h1>
+  </div>
+
+  <div class="settings-content">
+    <!-- Settings Grid -->
+    <div class="settings-grid">
+      <!-- Personal Information Form -->
+      <mat-card class="personal-info-card">
+        <mat-card-content>
+          <form
+            [formGroup]="personalInfoForm"
+            (ngSubmit)="onUpdateProfile()"
+            class="personal-info-form"
+          >
+            <div class="form-row">
+              <mat-form-field
+                appearance="outline"
+                class="form-field full-width"
+              >
+                <mat-label>Name</mat-label>
+                <input
+                  matInput
+                  formControlName="name"
+                  placeholder="Enter your full name"
+                />
+                @if (getFieldError('name')) {
+                <mat-error>{{ getFieldError('name') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field
+                appearance="outline"
+                class="form-field full-width"
+              >
+                <mat-label>Email Address</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  type="email"
+                  placeholder="Enter your email"
+                />
+                @if (getFieldError('email')) {
+                <mat-error>{{ getFieldError('email') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field
+                appearance="outline"
+                class="form-field full-width"
+              >
+                <mat-label>Current Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Enter your email"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field
+                appearance="outline"
+                class="form-field full-width"
+              >
+                <mat-label>New Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Enter your email"
+                />
+              </mat-form-field>
+            </div>
+           
+
+            
+
+            
+
+            <div class="form-actions">
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="personalInfoForm.invalid || isUpdatingProfile()"
+                class="form-action-black-btn"
+              >
+                @if (isUpdatingProfile()) {
+                <mat-spinner diameter="20"></mat-spinner>
+                Updating... } @else { Save Information }
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

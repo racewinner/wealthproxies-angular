@@ -1,0 +1,364 @@
+<div class="user-detail-container">
+  <div class="page-header">
+    <button mat-icon-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="header-title">
+      <mat-icon class="page-icon">person</mat-icon>
+      <h1>User Details</h1>
+    </div>
+    <div class="header-actions">
+      @if (!editing()) {
+        <button mat-raised-button color="primary" (click)="toggleEdit()">
+          <mat-icon>edit</mat-icon>
+          Edit User
+        </button>
+      } @else {
+        <button mat-button (click)="toggleEdit()">
+          Cancel
+        </button>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="saveUser()"
+          [disabled]="editForm.invalid || saving()">
+          @if (saving()) {
+            <mat-spinner diameter="20"></mat-spinner>
+            Saving...
+          } @else {
+            Save
+          }
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading user details...</p>
+    </div>
+  } @else if (user()) {
+    <mat-tab-group class="user-tabs" (selectedTabChange)="onTabChange($event.index)">
+      <!-- General Tab -->
+      <mat-tab label="General">
+        <div class="tab-content">
+          <!-- User Header Card -->
+          <mat-card class="user-header-card">
+            <mat-card-content>
+              <div class="user-header">
+                <div class="user-avatar">
+                  @if (user()?.image) {
+                    <img [src]="user()?.image" [alt]="user()?.name" class="avatar-image">
+                  } @else {
+                    <div class="avatar-placeholder">
+                      <mat-icon>person</mat-icon>
+                    </div>
+                  }
+                </div>
+                <div class="user-info">
+                  <h2 class="user-name">{{ user()?.name }}</h2>
+                  <p class="user-username">{{ '@' + user()?.username }}</p>
+                  <p class="user-email">{{ user()?.email }}</p>
+                  <div class="user-badges">
+                    <mat-chip class="role-chip">
+                      {{ user()?.role | titlecase }}
+                    </mat-chip>
+                    <mat-chip class="status-chip" [class.verified]="user()?.emailVerified">
+                      {{ user()?.emailVerified ? 'Verified' : 'Unverified' }}
+                    </mat-chip>
+                    @if (user()?.discordId) {
+                      <mat-chip class="discord-chip">
+                        <mat-icon>check_circle</mat-icon>
+                        Discord Connected
+                      </mat-chip>
+                    }
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          @if (editing()) {
+            <!-- Edit Form -->
+            <mat-card class="edit-form-card">
+              <mat-card-header>
+                <mat-card-title>Edit User Information</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <form [formGroup]="editForm" class="user-form">
+                  <div class="form-row">
+                    <mat-form-field appearance="outline" class="half-width">
+                      <mat-label>Full Name</mat-label>
+                      <input matInput formControlName="name" placeholder="Enter full name">
+                      <mat-error *ngIf="editForm.get('name')?.hasError('required')">
+                        Full name is required
+                      </mat-error>
+                      <mat-error *ngIf="editForm.get('name')?.hasError('minlength')">
+                        Name must be at least 2 characters
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="half-width">
+                      <mat-label>Username</mat-label>
+                      <input matInput formControlName="username" placeholder="Enter username">
+                      <mat-error *ngIf="editForm.get('username')?.hasError('required')">
+                        Username is required
+                      </mat-error>
+                      <mat-error *ngIf="editForm.get('username')?.hasError('minlength')">
+                        Username must be at least 3 characters
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-row">
+                    <mat-form-field appearance="outline" class="half-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="email" type="email" placeholder="Enter email address">
+                      <mat-error *ngIf="editForm.get('email')?.hasError('required')">
+                        Email is required
+                      </mat-error>
+                      <mat-error *ngIf="editForm.get('email')?.hasError('email')">
+                        Please enter a valid email address
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="half-width">
+                      <mat-label>Role</mat-label>
+                      <mat-select formControlName="role">
+                        <mat-option value="user">User</mat-option>
+                        <mat-option value="admin">Admin</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Stripe Customer ID</mat-label>
+                    <input matInput formControlName="stripeCustomerId" placeholder="Enter Stripe customer ID">
+                    <mat-icon matSuffix matTooltip="Copy to clipboard" (click)="copyToClipboard(editForm.get('stripeCustomerId')?.value)">content_copy</mat-icon>
+                  </mat-form-field>
+
+                  <div class="discord-section">
+                    <h3>Discord Information</h3>
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Discord ID</mat-label>
+                        <input matInput formControlName="discordId" placeholder="Enter Discord ID">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Discord Username</mat-label>
+                        <input matInput formControlName="discordUsername" placeholder="Enter Discord username">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="toggle-field">
+                    <mat-slide-toggle formControlName="emailVerified" color="primary">
+                      Email Verified
+                    </mat-slide-toggle>
+                  </div>
+                </form>
+              </mat-card-content>
+            </mat-card>
+          } @else {
+            <!-- View Mode -->
+            <div class="details-grid">
+              <!-- Account Information -->
+              <mat-card class="info-card">
+                <mat-card-header>
+                  <mat-card-title>Account Information</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="info-list">
+                    <div class="info-item">
+                      <span class="label">User ID:</span>
+                      <span class="value">
+                        {{ user()?.id }}
+                        <button mat-icon-button (click)="copyToClipboard(user()?.id || '')" matTooltip="Copy to clipboard">
+                          <mat-icon>content_copy</mat-icon>
+                        </button>
+                      </span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Email:</span>
+                      <span class="value">{{ user()?.email }}</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Username:</span>
+                      <span class="value">{{ '@' + user()?.username }}</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Role:</span>
+                      <span class="value">{{ user()?.role | titlecase }}</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Member Since:</span>
+                      <span class="value">{{ user()?.createdAt ? formatDate(user()!.createdAt) : 'N/A' }}</span>
+                    </div>
+                    @if (user()?.stripeCustomerId) {
+                      <div class="info-item">
+                        <span class="label">Stripe Customer ID:</span>
+                        <span class="value">
+                          {{ user()?.stripeCustomerId }}
+                          <button mat-icon-button (click)="copyToClipboard(user()?.stripeCustomerId || '')" matTooltip="Copy to clipboard">
+                            <mat-icon>content_copy</mat-icon>
+                          </button>
+                        </span>
+                      </div>
+                    }
+                  </div>
+                </mat-card-content>
+              </mat-card>
+
+              <!-- Discord Integration -->
+              <mat-card class="info-card">
+                <mat-card-header>
+                  <mat-card-title>Discord Integration</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  @if (user()?.discordId) {
+                    <div class="connected-account">
+                      <div class="account-info">
+                        <mat-icon class="connected-icon">check_circle</mat-icon>
+                        <div class="account-details">
+                          <div class="account-name">{{ user()?.discordUsername }}</div>
+                          <div class="account-status">Connected</div>
+                          <div class="account-id">ID: {{ user()?.discordId }}</div>
+                        </div>
+                      </div>
+                      <button mat-stroked-button color="warn" (click)="disconnectDiscord()">
+                        Disconnect
+                      </button>
+                    </div>
+                  } @else {
+                    <div class="disconnected-account">
+                      <p>No Discord account connected.</p>
+                      <button mat-raised-button color="primary" (click)="connectDiscord()">
+                        <mat-icon>add</mat-icon>
+                        Connect Discord
+                      </button>
+                    </div>
+                  }
+                </mat-card-content>
+              </mat-card>
+
+              <!-- Purchase Summary -->
+              <mat-card class="info-card">
+                <mat-card-header>
+                  <mat-card-title>Purchase Summary</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="info-list">
+                    <div class="info-item">
+                      <span class="label">Total Spent:</span>
+                      <span class="value">{{ formatCurrency(user()?.totalSpent || 0) }}</span>
+                    </div>
+                    @if (user()?.lastPurchase) {
+                      <div class="info-item">
+                        <span class="label">Last Purchase:</span>
+                        <span class="value">{{ formatDate(user()!.lastPurchase!) }}</span>
+                      </div>
+                    }
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          }
+        </div>
+      </mat-tab>
+
+      <!-- Purchase History Tab -->
+      <mat-tab label="Purchase History">
+        <div class="tab-content">
+          @if (ordersLoading()) {
+            <div class="loading-container">
+              <mat-spinner></mat-spinner>
+              <p>Loading purchase history...</p>
+            </div>
+          } @else {
+            <div class="table-container">
+              <table mat-table [dataSource]="dataSource" class="orders-table">
+                <!-- Product Column -->
+                <ng-container matColumnDef="product">
+                  <th mat-header-cell *matHeaderCellDef>Product</th>
+                  <td mat-cell *matCellDef="let order">
+                    <div class="product-info">
+                      <div class="product-name">{{ order.product?.name || 'N/A' }}</div>
+                      <div class="product-variant">{{ order.variant?.name || 'N/A' }}</div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- Order Number Column -->
+                <ng-container matColumnDef="orderNumber">
+                  <th mat-header-cell *matHeaderCellDef>Order</th>
+                  <td mat-cell *matCellDef="let order">
+                    <span class="order-id">{{ order.id }}</span>
+                  </td>
+                </ng-container>
+
+                <!-- Quantity Column -->
+                <ng-container matColumnDef="quantity">
+                  <th mat-header-cell *matHeaderCellDef>Qty</th>
+                  <td mat-cell *matCellDef="let order">{{ order.quantity }}</td>
+                </ng-container>
+
+                <!-- Price Column -->
+                <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef>Price</th>
+                  <td mat-cell *matCellDef="let order">
+                    <span class="amount">{{ formatCurrency(order.amount) }}</span>
+                  </td>
+                </ng-container>
+
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                  <td mat-cell *matCellDef="let order">{{ formatDate(order.createdAt) }}</td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>Status</th>
+                  <td mat-cell *matCellDef="let order">
+                    <mat-chip class="status-chip" [style.background-color]="getStatusColor(order.status)">
+                      {{ order.status | titlecase }}
+                    </mat-chip>
+                  </td>
+                </ng-container>
+
+                <!-- Receipt Column -->
+                <ng-container matColumnDef="receipt">
+                  <th mat-header-cell *matHeaderCellDef>Receipt</th>
+                  <td mat-cell *matCellDef="let order">
+                    @if (order.receiptUrl) {
+                      <button mat-icon-button (click)="downloadReceipt(order.id)" matTooltip="Download Receipt">
+                        <mat-icon>receipt</mat-icon>
+                      </button>
+                    }
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              @if (dataSource.data.length === 0) {
+                <div class="no-results">
+                  <mat-icon>shopping_cart</mat-icon>
+                  <h3>No Purchase History</h3>
+                  <p>This user hasn't made any purchases yet.</p>
+                </div>
+              }
+
+              <mat-paginator
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                [pageSize]="10"
+                [length]="dataSource.data.length"
+                showFirstLastButtons>
+              </mat-paginator>
+            </div>
+          }
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  }
+</div>

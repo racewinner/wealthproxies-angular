@@ -1,0 +1,445 @@
+.user-detail-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .back-button {
+    margin-right: 16px;
+  }
+
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+
+    .page-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      color: #667eea;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a202c;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    mat-spinner {
+      margin-right: 8px;
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  gap: 16px;
+
+  p {
+    margin: 0;
+    color: #718096;
+    font-size: 16px;
+  }
+}
+
+.user-tabs {
+  ::ng-deep .mat-mdc-tab-group {
+    .mat-mdc-tab-header {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .mat-mdc-tab-labels {
+      background: #f8fafc;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .mat-mdc-tab-label {
+      font-weight: 500;
+      color: #64748b;
+
+      &.mdc-tab--active {
+        color: #667eea;
+      }
+    }
+
+    .mat-mdc-tab-body-wrapper {
+      background: white;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.tab-content {
+  padding: 24px;
+}
+
+.user-header-card {
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .user-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .user-avatar {
+      .avatar-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .avatar-placeholder {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+          font-size: 40px;
+          width: 40px;
+          height: 40px;
+          color: #64748b;
+        }
+      }
+    }
+
+    .user-info {
+      flex: 1;
+
+      .user-name {
+        margin: 0 0 4px 0;
+        font-size: 24px;
+        font-weight: 600;
+        color: #1a202c;
+      }
+
+      .user-username {
+        margin: 0 0 4px 0;
+        font-size: 16px;
+        color: #667eea;
+        font-weight: 500;
+      }
+
+      .user-email {
+        margin: 0 0 16px 0;
+        font-size: 14px;
+        color: #64748b;
+      }
+
+      .user-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .role-chip {
+          background: #667eea;
+          color: white;
+        }
+
+        .status-chip {
+          background: #f56565;
+          color: white;
+
+          &.verified {
+            background: #48bb78;
+          }
+        }
+
+        .discord-chip {
+          background: #5865f2;
+          color: white;
+
+          mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.edit-form-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .user-form {
+    .form-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+
+      .half-width {
+        flex: 1;
+      }
+    }
+
+    .full-width {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .discord-section {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+
+      h3 {
+        margin: 0 0 16px 0;
+        font-size: 1.1rem;
+        color: #5865f2;
+      }
+    }
+
+    .toggle-field {
+      padding: 16px 0;
+    }
+  }
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.info-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .mat-mdc-card-header {
+    .mat-mdc-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a202c;
+    }
+  }
+
+  .info-list {
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .label {
+        font-weight: 500;
+        color: #64748b;
+        min-width: 120px;
+      }
+
+      .value {
+        color: #1a202c;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        button {
+          opacity: 0.6;
+          transition: opacity 0.2s;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .connected-account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .account-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .connected-icon {
+        color: #48bb78;
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .account-details {
+        .account-name {
+          font-weight: 600;
+          color: #1a202c;
+          margin-bottom: 2px;
+        }
+
+        .account-status {
+          font-size: 14px;
+          color: #48bb78;
+          font-weight: 500;
+        }
+
+        .account-id {
+          font-size: 12px;
+          color: #64748b;
+          font-family: monospace;
+        }
+      }
+    }
+  }
+
+  .disconnected-account {
+    text-align: center;
+    padding: 16px 0;
+
+    p {
+      margin: 0 0 16px 0;
+      color: #64748b;
+    }
+
+    button {
+      mat-icon {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.table-container {
+  .orders-table {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    .product-info {
+      .product-name {
+        font-weight: 500;
+        color: #1a202c;
+        margin-bottom: 2px;
+      }
+
+      .product-variant {
+        font-size: 12px;
+        color: #64748b;
+      }
+    }
+
+    .order-id {
+      font-family: monospace;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .amount {
+      font-weight: 600;
+      color: #1a202c;
+    }
+
+    .status-chip {
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  .no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #cbd5e0;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      margin: 0 0 8px 0;
+      color: #4a5568;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      color: #718096;
+      font-size: 14px;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .user-detail-container {
+    padding: 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    .header-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .user-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .tab-content {
+    padding: 16px;
+  }
+
+  .edit-form-card .user-form .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="tabbed-dashboard-container">
+  @if (isAdmin()) {
+    <!-- Admin view with tabs -->
+    <mat-tab-group class="dashboard-tabs" [(selectedIndex)]="selectedTabIndex">
+      <mat-tab label="My Dashboard">
+        <div class="tab-content">
+          <app-overview></app-overview>
+        </div>
+      </mat-tab>
+      
+      <mat-tab label="Admin Dashboard">
+        <div class="tab-content">
+          <app-admin-dashboard></app-admin-dashboard>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  } @else {
+    <!-- Regular user view without tabs -->
+    <div class="user-dashboard">
+      <app-overview></app-overview>
+    </div>
+  }
+</div>

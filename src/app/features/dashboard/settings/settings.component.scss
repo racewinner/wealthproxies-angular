@@ -1,0 +1,302 @@
+.settings-container {
+  padding: 0;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  .page-icon {
+    font-size: 2rem;
+    color: #667eea;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--main-title);
+  }
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.connection-card {
+  background-color: var(--card-block-pad);
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+
+
+  .discord-icon {
+    color: #5865f2;
+    margin-right: 0.5rem;
+  }
+
+  .connected-account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .account-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .connected-icon {
+        color: #4caf50;
+        font-size: 1.5rem;
+      }
+
+      .account-details {
+        .account-name {
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 0.25rem;
+        }
+
+        .account-status {
+          color: #4caf50;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .disconnected-account {
+    text-align: left;
+    padding: 0rem 0;
+
+    p {
+      color: #666;
+      text-align: left;
+      padding-top: 0px !important;
+      padding-left: 10px !important;
+      padding-bottom: 14px !important;
+      margin-block-start: 5px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.contact-card {
+  background-color: var(--card-block-pad);
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+
+  .support-icon {
+    color: #ff9800;
+    margin-right: 0.5rem;
+  }
+
+  .contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    p {
+      color: #666;
+      text-align: left;
+      padding-top: 0px !important;
+      padding-left: 10px !important;
+      padding-bottom: 10px !important;
+      margin-block-start: 5px;
+      font-size: 0.9rem;      
+    }
+
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.4rem;
+      text-align: left;
+      justify-content: flex-start;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+
+      mat-icon {
+        color: #828282;
+        font-size: 24px;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      .option-text {
+        .option-title {
+          color: #828282;
+        }
+
+        .option-description {
+          color: #666;
+          font-size: 0.9rem;
+        }
+      }
+
+      
+    }
+  }
+}
+
+.person-info-title {
+  margin-top: 40px;
+  margin-bottom: 1rem;
+}
+.personal-info-card {
+  background-color: var(--card-block-pad);
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+
+  .personal-info-form {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-field {
+        width: 100%;
+
+        &.full-width {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        min-width: 150px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .page-header {
+    .page-icon {
+      font-size: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1rem;
+    }
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .connected-account {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .account-info {
+      width: 100%;
+    }
+  }
+
+  .contact-options {
+    .contact-option {
+      padding: 0.75rem;
+    }
+  }
+
+  .personal-info-form {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+      justify-content: center;
+
+      button {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-options {
+    .contact-option {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+}
+
+/* custom css */
+.mat-custom-card-padding {
+  padding: 20px 16px 0 24px;
+}
+.mat-custom-card-header {
+
+}
+.mat-custom-card-title {
+  font-size: 16px;
+  color: var(--main-title);
+  font-weight: 500;
+}
+.mat-custom-card-content {
+  padding: 10px 10px 30px 24px !important;
+}
+.mat-custom-card-action {
+  padding: 0px 20px 0px 24px !important;
+  margin-bottom: 16px;
+}
+.setting-account-add-btn {
+  color: black;
+  font-weight: 400;
+    background-color: var(--card-sub-act-btn-pad);
+  box-shadow: none;
+    border:1px solid var(--card-sub-act-btn-border);
+  border-radius: 8px;
+  width: 100%;
+  padding: 24px;
+  border-width: 1px;
+  color: var(--main-title)
+}
+
+
+
+
+
+
+.form-action-black-btn {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+}
+
+.mat-icon-font-family {
+  font-family: 'Material Icons';
+}

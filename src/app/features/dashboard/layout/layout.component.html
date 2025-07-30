@@ -1,0 +1,125 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav plane-sidenav" fixedInViewport
+               [attr.role]="isHandset() ? 'dialog' : 'navigation'"
+               [mode]="isHandset() ? 'over' : 'side'"
+               [opened]="sidenavOpened()">
+    <div class="flex-col-box vh-100">
+      <div>
+        <div class="sidenav-header">
+          <img src="/logo.png" alt="Wealth Proxies" class="logo">
+        </div>
+
+        <div class="search-container">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search</mat-label>
+            <input matInput
+                  [(ngModel)]="searchQuery"
+                  (ngModelChange)="onSearchChange()"
+                  placeholder="Search...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="flex-1">
+        <mat-nav-list>
+          <div class="main-menu-label">MAIN MENU</div>
+          @for (item of navItems; track item.route || item.label) {
+            @if (item.type === 'separator') {
+              <mat-divider class="nav-separator"></mat-divider>
+            } @else if (item.label === 'Manage Products' || item.label === 'Manage Users') {
+              @if (isAdmin()) {
+                <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link">
+                  <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+                  <span matListItemTitle class="small-nav-itm">{{ item.label }}</span>
+                </a>
+              }
+            } @else {
+              <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link">
+                <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+                <span matListItemTitle class="small-nav-itm">{{ item.label }}</span>
+              </a>
+            }
+          }
+        </mat-nav-list>
+      </div>
+      <div>
+        <div class="sidenav-footer">
+          <div class="theme-toggle-container theme-toggle-custom-position">
+            <app-theme-toggle></app-theme-toggle>
+          </div>
+
+          <div class="footer-actions-custom-position">
+            <button
+              mat-stroked-button
+              class="helper-btn"
+            >
+              <mat-icon>help_center</mat-icon>
+              <div class="option-text">
+                <div class="option-title">Help Center</div>
+              </div>
+            </button>
+
+            <button
+              mat-stroked-button
+              class="discord-btn"
+            >
+              <mat-icon>chat</mat-icon>
+              <div class="option-text">
+                <div class="option-title">Discord Server</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="mat-custom-sidenav-content">
+    <mat-toolbar color="primary" class="toolbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="toggleSidenav()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <div class="breadcrumb-txt">Overview</div>
+      
+      <span class="toolbar-spacer"></span>
+     
+      <div class="flex-box">
+        <button class="logout-btn" (click)="logout()">
+          <mat-icon class="logout-btn-ico">logout</mat-icon>
+        </button>
+        <div class="divider"></div>
+        <button class="avatar-button" [matMenuTriggerFor]="userMenu">
+          <div class="avatar">
+            {{ getInitials() }}
+          </div>
+          <div class="flex-box-col avatar-name">
+            <div class="avatar-full-name">{{ currentUser()?.name || 'User' }}</div>
+            <div class="avatar-short-name">{{ currentUser()?.username || 'user' }}</div>
+          </div>
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="navigateToProfile()">
+    <mat-icon>person</mat-icon>
+    <span>Profile</span>
+  </button>
+  <!--
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+  -->
+</mat-menu>

@@ -1,0 +1,154 @@
+<div class="shop-container">
+  <!-- Cart functionality hidden - direct purchase flow -->
+  <!--
+  <div class="cart-section">
+    <button mat-raised-button color="primary" class="cart-btn" (click)="viewCart()">
+      <mat-icon [matBadge]="cartItemCount()" [matBadgeHidden]="cartItemCount() === 0" matBadgeColor="warn">shopping_cart</mat-icon>
+      View Cart
+    </button>
+  </div>
+
+  <app-cart-sidebar
+    [isOpen]="cartSidebarOpen()"
+    (closeCart)="closeCartSidebar()">
+  </app-cart-sidebar>
+  -->
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="text-center">
+      <h1 class="section-title">Shop Products</h1>
+      <div>
+        <span class="section-desc">Browse and purchase our premium proxy services with instant access and reliable performance.</span>
+      </div>
+    </div>
+
+    @if (loading()) {
+      <div class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Loading products...</p>
+      </div>
+    } @else {
+
+      <!-- Residential Proxies Section -->
+      @if (getResidentialProducts().length > 0) {
+        <div class="text-center">
+          <div class="title-with-ico mt-2r">
+            <mat-icon class="custom-ico">home</mat-icon>
+            <div class="custom-txt">Residential Proxies</div>
+          </div>
+          <div style="margin-bottom: 0.5rem;">
+            <span class="sub-section-desc">Unlock millions of real residential IPs with unlimited sessions. Built for automation, scraping, and scale.</span>
+          </div>
+        </div>
+
+        <div class="residential-grid">
+          @for (product of getResidentialProducts(); track product.id) {
+            <app-residential-proxy-card
+              [productId]="product.id"
+              [product]="product"
+              [title]="product.name"
+              [description]="product.description"
+              [whatsIncluded]="product.whatsIncluded"
+              [variants]="product.variants"
+              [enablePurchase]="true"
+              (productPurchased)="onProductPurchased()"
+              class="full-width">
+            </app-residential-proxy-card>
+          }
+        </div>
+      }
+
+      <!-- ISP Proxies Section -->
+      @if (getISPProducts().length > 0) {
+        <div class="text-center">
+          <div class="title-with-ico mt-4r">
+            <mat-icon class="custom-ico">language</mat-icon>
+            <div class="custom-txt">ISP Proxies</div>
+          </div>
+          <div style="margin-bottom: 0.5rem;">
+            <span class="sub-section-desc">Premium ISP proxies with high-speed connections and reliable performance for demanding applications.</span>
+          </div>
+        </div>
+
+        <div class="grid-box grid-col-4 full-width gap-2r">
+          @for (product of getISPProducts(); track product.id) {
+            <app-product-card
+              [productId]="product.id"
+              [product]="product"
+              [title]="product.name"
+              [description]="product.description"
+              [whatsIncluded]="product.whatsIncluded"
+              [variants]="product.variants"
+              [enablePurchase]="true"
+              (productPurchased)="onProductPurchased()">
+            </app-product-card>
+          }
+        </div>
+      }
+
+      <!-- Dedicated Servers Section -->
+      @if (getServerProducts().length > 0) {
+        <div class="text-center">
+          <div class="title-with-ico mt-4r">
+            <mat-icon class="custom-ico">dns</mat-icon>
+            <div class="custom-txt">Dedicated Servers</div>
+          </div>
+          <div style="margin-bottom: 0.5rem;">
+            <span class="sub-section-desc">High-performance dedicated servers for your most demanding proxy and hosting needs.</span>
+          </div>
+        </div>
+
+        <div class="grid-box grid-col-3 full-width gap-2r">
+          @for (product of getServerProducts(); track product.id) {
+            <app-product-card
+              [productId]="product.id"
+              [product]="product"
+              [title]="product.name"
+              [description]="product.description"
+              [whatsIncluded]="product.whatsIncluded"
+              [variants]="product.variants"
+              [enablePurchase]="true"
+              (productPurchased)="onProductPurchased()">
+            </app-product-card>
+          }
+        </div>
+      }
+
+      <!-- Proxy Lists Section -->
+      @if (getProxyListProducts().length > 0) {
+        <div class="text-center">
+          <div class="title-with-ico mt-4r">
+            <mat-icon class="custom-ico">list</mat-icon>
+            <div class="custom-txt">Proxy Lists</div>
+          </div>
+          <div style="margin-bottom: 0.5rem;">
+            <span class="sub-section-desc">Curated proxy lists for various use cases and geographic locations.</span>
+          </div>
+        </div>
+
+        <div class="products-grid">
+          @for (product of getProxyListProducts(); track product.id) {
+            <app-product-card
+              [productId]="product.id"
+              [product]="product"
+              [title]="product.name"
+              [description]="product.description"
+              [whatsIncluded]="product.whatsIncluded"
+              [variants]="product.variants"
+              [enablePurchase]="true"
+              (productPurchased)="onProductPurchased()">
+            </app-product-card>
+          }
+        </div>
+      }
+
+      @if (products().length === 0) {
+        <div class="text-center">
+          <h3>No products available</h3>
+          <p>Check back later for new products and services.</p>
+        </div>
+      }
+    }
+  </main>
+</div>

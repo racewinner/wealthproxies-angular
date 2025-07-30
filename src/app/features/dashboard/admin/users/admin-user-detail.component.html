@@ -1,0 +1,184 @@
+<div class="user-detail-container">
+  <div class="page-header">
+    <button mat-icon-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="header-title">
+      <mat-icon class="page-icon">person</mat-icon>
+      <h1>User Details</h1>
+    </div>
+    <div class="header-actions">
+      <button mat-stroked-button (click)="editUser()">
+        <mat-icon>edit</mat-icon>
+        Edit User
+      </button>
+      <button mat-stroked-button color="warn" (click)="deleteUser()">
+        <mat-icon>delete</mat-icon>
+        Delete User
+      </button>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading user details...</p>
+    </div>
+  } @else {
+    @if (user(); as userData) {
+    <div class="user-content">
+      <!-- User Profile Card -->
+      <mat-card class="profile-card">
+        <mat-card-content>
+          <div class="profile-header">
+            <div class="user-avatar">
+              @if (userData.image) {
+                <img [src]="userData.image" [alt]="userData.name">
+              } @else {
+                <mat-icon>account_circle</mat-icon>
+              }
+            </div>
+            <div class="user-info">
+              <h2 class="user-name">{{ userData.name }}</h2>
+              <p class="user-username">{{ '@' + userData.username }}</p>
+              <p class="user-email">{{ userData.email }}</p>
+              <div class="user-badges">
+                <mat-chip
+                  class="role-chip"
+                  [style.background-color]="getRoleColor(userData.role)">
+                  {{ userData.role | titlecase }}
+                </mat-chip>
+                <mat-chip
+                  class="status-chip"
+                  [style.background-color]="getStatusColor(userData.emailVerified)">
+                  {{ getStatusText(userData.emailVerified) }}
+                </mat-chip>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- User Details Grid -->
+      <div class="details-grid">
+        <!-- Account Information -->
+        <mat-card class="info-card">
+          <mat-card-header>
+            <mat-card-title>Account Information</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="info-list">
+              <div class="info-item">
+                <span class="label">User ID:</span>
+                <span class="value">{{ userData.id }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Email:</span>
+                <span class="value">{{ userData.email }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Username:</span>
+                <span class="value">{{ '@' + userData.username }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Role:</span>
+                <span class="value">{{ userData.role | titlecase }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Email Verified:</span>
+                <span class="value">{{ userData.emailVerified ? 'Yes' : 'No' }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Purchase History -->
+        <mat-card class="info-card">
+          <mat-card-header>
+            <mat-card-title>Purchase History</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="info-list">
+              <div class="info-item">
+                <span class="label">Total Spent:</span>
+                <span class="value amount">{{ formatCurrency(userData.totalSpent) }}</span>
+              </div>
+              @if (userData.lastPurchase) {
+                <div class="info-item">
+                  <span class="label">Last Purchase:</span>
+                  <span class="value">{{ formatDate(userData.lastPurchase) }}</span>
+                </div>
+              }
+              <div class="info-item">
+                <span class="label">Account Created:</span>
+                <span class="value">{{ formatDate(userData.createdAt) }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Last Updated:</span>
+                <span class="value">{{ formatDate(userData.updatedAt) }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Discord Connection -->
+        @if (userData.discordId) {
+          <mat-card class="info-card">
+            <mat-card-header>
+              <mat-card-title>Discord Connection</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="info-list">
+                <div class="info-item">
+                  <span class="label">Discord ID:</span>
+                  <span class="value">{{ userData.discordId }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Discord Username:</span>
+                  <span class="value">{{ userData.discordUsername }}</span>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+
+      <!-- Quick Actions -->
+      <mat-card class="actions-card">
+        <mat-card-header>
+          <mat-card-title>Quick Actions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="actions-grid">
+            <button mat-raised-button color="primary">
+              <mat-icon>email</mat-icon>
+              Send Email
+            </button>
+            <button mat-stroked-button>
+              <mat-icon>history</mat-icon>
+              View Orders
+            </button>
+            <button mat-stroked-button>
+              <mat-icon>subscriptions</mat-icon>
+              View Subscriptions
+            </button>
+            <button mat-stroked-button color="warn">
+              <mat-icon>block</mat-icon>
+              Suspend Account
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    } @else {
+      <div class="error-container">
+        <mat-icon class="error-icon">error</mat-icon>
+        <h3>User Not Found</h3>
+        <p>The requested user could not be found.</p>
+        <button mat-raised-button color="primary" (click)="goBack()">
+          Back to Users
+        </button>
+      </div>
+    }
+  }
+</div>

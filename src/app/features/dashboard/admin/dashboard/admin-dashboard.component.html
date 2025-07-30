@@ -1,0 +1,147 @@
+<div class="admin-dashboard-container">
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading dashboard data...</p>
+    </div>
+  } @else {
+    <div class="dashboard-content">
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <mat-card class="stat-card users-card">
+          <mat-card-content>
+            <div class="stat-header">
+              <mat-icon class="stat-icon">people</mat-icon>
+              <div class="stat-info">
+                <div class="stat-value">{{ stats().totalUsers }}</div>
+                <div class="stat-label">Total Users</div>
+              </div>
+            </div>
+            <div class="stat-detail">
+              <span class="active-count">{{ stats().activeUsers }} active</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card orders-card">
+          <mat-card-content>
+            <div class="stat-header">
+              <mat-icon class="stat-icon">shopping_cart</mat-icon>
+              <div class="stat-info">
+                <div class="stat-value">{{ stats().totalOrders }}</div>
+                <div class="stat-label">Total Orders</div>
+              </div>
+            </div>
+            <div class="stat-detail">
+              <span class="revenue-amount">{{ formatCurrency(stats().totalRevenue) }} revenue</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card subscriptions-card">
+          <mat-card-content>
+            <div class="stat-header">
+              <mat-icon class="stat-icon">subscriptions</mat-icon>
+              <div class="stat-info">
+                <div class="stat-value">{{ stats().activeSubscriptions }}</div>
+                <div class="stat-label">Active Subscriptions</div>
+              </div>
+            </div>
+            <div class="stat-detail">
+              <span class="monthly-recurring">Monthly recurring</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card products-card">
+          <mat-card-content>
+            <div class="stat-header">
+              <mat-icon class="stat-icon">inventory</mat-icon>
+              <div class="stat-info">
+                <div class="stat-value">{{ stats().totalProducts }}</div>
+                <div class="stat-label">Products</div>
+              </div>
+            </div>
+            <div class="stat-detail">
+              <button mat-button routerLink="/dashboard/admin/products" class="manage-link">
+                Manage Products
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Charts and Activity -->
+      <div class="dashboard-grid">
+        <!-- Revenue Chart -->
+        <mat-card class="chart-card">
+          <mat-card-header>
+            <mat-card-title>Revenue (Last 7 Days)</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas baseChart
+                      [data]="revenueChartData"
+                      [options]="chartOptions"
+                      [type]="chartType">
+              </canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- User Growth Chart -->
+        <mat-card class="chart-card">
+          <mat-card-header>
+            <mat-card-title>New Users (Last 7 Days)</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas baseChart
+                      [data]="userChartData"
+                      [options]="chartOptions"
+                      [type]="chartType">
+              </canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Recent Activity -->
+        <mat-card class="activity-card">
+          <mat-card-header>
+            <mat-card-title>Recent Activity</mat-card-title>
+            <button mat-button routerLink="/dashboard/admin/users">View All</button>
+          </mat-card-header>
+          <mat-card-content>
+            @if (recentActivity().length === 0) {
+              <div class="no-activity">
+                <mat-icon>info</mat-icon>
+                <p>No recent activity</p>
+              </div>
+            } @else {
+              <div class="activity-list">
+                @for (activity of recentActivity(); track activity.id) {
+                  <div class="activity-item">
+                    <div class="activity-icon">
+                      <mat-icon [style.color]="getActivityColor(activity.type)">
+                        {{ getActivityIcon(activity.type) }}
+                      </mat-icon>
+                    </div>
+                    <div class="activity-content">
+                      <div class="activity-description">{{ activity.description }}</div>
+                      @if (activity.userName) {
+                        <div class="activity-user">by {{ activity.userName }}</div>
+                      }
+                      <div class="activity-time">{{ formatDate(activity.timestamp) }}</div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
+    </div>
+  }
+</div>

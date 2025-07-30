@@ -1,0 +1,67 @@
+<div class="overview-container">
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading dashboard data...</p>
+    </div>
+  } @else {
+    <div class="dashboard-grid">
+      <!-- Bandwidth Cards -->
+      @for (card of bandwidthCards(); track card.title) {
+        <mat-card class="bandwidth-card">
+          <mat-card-header class="mat-custom-card-header mat-custom-card-padding">
+            <mat-card-title class="mat-custom-card-title">{{ card.title }}</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="mat-custom-card-content">
+            <div class="bandwidth-value">
+              <span class="value">{{ card.value }}</span>
+              <span class="unit">/ {{ card.unit }}</span>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions class="card-footer mat-custom-card-action mat-custom-card-padding">
+            <div class="comparison">
+              <span class="comparison-label">vs last month</span>
+              <div class="percentage-change" [style.color]="getPercentageColor(card.percentage)">
+                <!-- <mat-icon>{{ getPercentageIcon(card.percentage) }}</mat-icon> -->
+                <mat-icon class="overview-custom-ico">add</mat-icon>
+                <span class="overview-custom-icotxt">{{ Math.abs(card.percentage).toFixed(2) }}%</span>
+              </div>
+            </div>
+            <button mat-stroked-button class="mat-custom-stroked-btn">
+              <span class="txt-black pr-10">See Details</span>
+              <mat-icon class="txt-black mr-0">arrow_forward</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
+
+      <!-- Usage Graph Card -->
+      <mat-card class="usage-graph-card">
+        <mat-card-header class="mat-custom-card-header mat-custom-card-padding">
+          <mat-card-title class="mat-custom-card-title">Bandwidth Usage</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="chart-container">
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Active Plans Card -->
+      <mat-card class="active-plans-card">
+        <mat-card-header class="mat-custom-card-header mat-custom-card-padding">
+          <mat-card-title class="mat-custom-card-title">
+            Active Plans
+            <span class="plan-count">({{ plans().length }})</span>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  }
+</div>

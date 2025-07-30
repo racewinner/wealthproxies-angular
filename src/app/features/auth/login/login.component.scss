@@ -1,0 +1,288 @@
+// Main container matching Next.js layout
+.login-container {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 48px;
+  background: white;
+}
+
+.logo {
+  width: 243px;
+  height: 53px;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  height: 100%;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  h1 {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 0;
+    color: black; // foreground
+  }
+
+  .subtitle {
+    color: #64748b; // muted-foreground
+    margin: 0;
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 24rem; // max-w-sm
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// Form field styling to match shadcn/ui
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  input {
+    display: flex;
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid #e2e8f0; // border
+    background-color: white;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    outline: none;
+
+    &::placeholder {
+      color: #64748b; // muted-foreground
+    }
+
+    &:focus {
+      border-color: #0f172a;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1);
+    }
+
+    &.error {
+      border-color: #ef4444;
+    }
+  }
+
+  .error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+}
+
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: black; // primary
+  color: white;
+  height: 2.5rem;
+  padding: 0 1.5rem;
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    background: rgba(15, 23, 42, 0.9);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0f172a;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  mat-spinner {
+    margin-right: 0.5rem;
+  }
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  .forgot-password {
+    color: #64748b; // muted-foreground
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .signup-section {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    .signup-text {
+      color: #64748b; // muted-foreground
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .signup-link {
+      color: #3b82f6; // blue-500
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.875rem;
+      padding: 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.separator-section {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+
+  .separator {
+    height: 1px;
+    width: 6rem; // max-w-24
+    background: #e2e8f0; // border
+    flex-shrink: 0;
+  }
+
+  .separator-text {
+    color: #64748b; // muted-foreground
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.oauth-buttons {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.google-button,
+.discord-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  height: 2.5rem; // lg size
+  padding: 0 1.5rem;
+  flex: 1;
+
+  mat-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  &:focus-visible {
+    outline-offset: 2px;
+  }
+}
+
+.google-button {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #4285f4;
+  }
+}
+
+.discord-button {
+  background: #4378F3; // Discord blue
+  color: white;
+
+  &:hover {
+    background: rgba(67, 120, 243, 0.9); // hover:bg-[#4378F3]/90
+  }
+
+  &:focus-visible {
+    outline: 2px solid #4378F3;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+
+  .content-wrapper {
+    padding: 2rem 1rem;
+  }
+
+  .logo {
+    width: 180px;
+    height: auto;
+  }
+
+  .form-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+}

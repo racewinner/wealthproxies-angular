@@ -1,0 +1,157 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.62 0.19 259.81);
+  --chart-2: oklch(0.55 0.22 262.88);
+  --chart-3: oklch(0.49 0.22 264.38);
+  --chart-4: oklch(0.42 0.18 265.64);
+  --chart-5: oklch(0.38 0.14 265.52);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --gradient-base: oklch(0.985 0 0);
+
+  --main-title: black;
+  --main-block-pad: white;
+  --main-block-border: #e5e5e5;
+
+  --card-block-pad: white;
+
+  --card-main-act-btn-pad: black;
+  --card-main-act-btn-title: white;
+  --card-main-act-btn-border: yellow;
+  --card-sub-act-btn-title: white;
+
+  --card-sub-act-btn-pad: white;
+  --card-sub-act-btn-pad2: white;
+  --card-sub-act-btn-border: rgb(223, 223, 223);
+  --card-sub-act-btn-title: black;
+
+  --dark-light-act-title: rgb(97, 97, 97);
+  --dark-light-act-card: #e0e0e0;
+
+  --sidenav-content-border: #e5e5e5;
+  --avatar-pad: #dbdbdb;
+
+  --box-title-10: #4b5563;
+  --box-title-20: #4b5563;
+
+  --proxy-sel-radio-btn-bkgnd: #262626;
+  --proxy-sel-radio-btn-clr: white;
+  --proxy-def-radio-btn-clr: #525252;
+
+  --cart-rm-btn: #cccccc;
+
+  --search-input-hover-outline-color: rgb(77, 77, 77);
+
+  --landing-txt-sub-topic: #1f5eff;
+
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.71 0.14 254.62);
+  --chart-2: oklch(0.62 0.19 259.81);
+  --chart-3: oklch(0.55 0.22 262.88);
+  --chart-4: oklch(0.49 0.22 264.38);
+  --chart-5: oklch(0.42 0.18 265.64);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --gradient-base: oklch(0.145 0 0);
+
+  --main-title: white;
+  --main-block-pad: black;
+  --main-block-border: #2c2c2c;
+
+  --card-block-pad: #151515;
+
+  --card-main-act-btn-pad: white;
+  --card-main-act-btn-title: black;
+  --card-main-act-btn-border: red;
+  --card-sub-act-btn-title: black;
+
+  --card-sub-act-btn-pad: rgb(53, 53, 53);
+  --card-sub-act-btn-pad2: rgb(27, 27, 27);
+  --card-sub-act-btn-border: rgb(82, 82, 82);
+  --card-sub-act-btn-title: white;
+
+  --dark-light-act-title: #a0a0a0;
+  --dark-light-act-card: #303030;
+
+  --sidenav-content-border: #303030;
+  --avatar-pad: #424242;
+
+  --box-title-10: #e6e6e6;
+  --box-title-20: #b6b6b6;
+
+  --proxy-sel-radio-btn-bkgnd: #f2f2f2;
+  --proxy-sel-radio-btn-clr: black;
+  --proxy-def-radio-btn-clr: #b5b5b5;
+
+  --cart-rm-btn: #303030;
+
+  --search-input-hover-outline-color: #a7a7a7;
+
+  --landing-txt-sub-topic: yellow;
+
+}
+
+html, body {
+  height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
