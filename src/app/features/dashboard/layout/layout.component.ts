@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AuthService } from '../../../core/services/auth.service';
 import { ThemeToggleComponent } from '../../../shared/components/theme-toggle/theme-toggle.component'
+import { filter } from 'rxjs/operators';
 
 interface NavItem {
   label: string;
@@ -50,6 +51,10 @@ export class LayoutComponent {
   isHandset = signal(false);
   sidenavOpened = signal(true);
   searchQuery = signal('');
+  breadCrumb = signal('');
+  breadCrumbCapt = computed(() => {
+    return this.breadCrumb().toString().charAt(0).toUpperCase() + this.breadCrumb().toString().slice(1);
+  });
 
   navItems: NavItem[] = [
     { label: 'Overview',        route: '/dashboard/overview', icon: 'dashboard', type: 'item' },
@@ -75,6 +80,15 @@ export class LayoutComponent {
       .subscribe(result => {
         this.isHandset.set(result.matches);
         this.sidenavOpened.set(!result.matches);
+      });
+
+    this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        const url = event.urlAfterRedirects;
+        const segments = url.split('/').filter(segment => segment);
+        const lastPart = segments[segments.length - 1];
+        this.breadCrumb.set(lastPart);
       });
   }
 
