@@ -65,7 +65,7 @@
 
 .table-container {
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 8px 8px 0px 0px;
   overflow: hidden;
   background: white;
   position: relative;
@@ -127,7 +127,6 @@
   }
 
   .no-results-overlay {
-    position: absolute;
     top: 60px; // Height of header row
     left: 0;
     right: 0;
@@ -151,10 +150,12 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  //padding: 1rem;
   border-top: 1px solid #e0e0e0;
-  //background-color: #f8f9fa;
+  background-color: #f8f9fa;
   min-height: 60px;
+  border: 1px solid #e0e0e0;
+  border-top-width: 0px;
+  border-radius: 0px 0px 8px 8px;
 
   mat-paginator {
     background: transparent;
